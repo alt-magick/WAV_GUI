@@ -174,7 +174,7 @@ namespace WaveformDisplay
             this.runButton.Location = new Point(12, 168);
             this.runButton.Name = "runButton";
             this.runButton.Size = new Size(75, 23);
-            this.runButton.Text = "Run";
+            this.runButton.Text = "Create";
             this.runButton.Click += new EventHandler(this.RunButton_Click);
             this.Controls.Add(mixLabel3);
 
