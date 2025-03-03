@@ -379,13 +379,14 @@ namespace WaveformDisplay
                 process.WaitForExit();
 
                 // Show a message with execution results
+                DisplayWaveform(outputFilePath, pictureBox3);
                 MessageBox.Show($"{output}\n");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error running program.exe: " + ex.Message);
             }
-            DisplayWaveform(outputFilePath, pictureBox3);
+            
         }
 
 
