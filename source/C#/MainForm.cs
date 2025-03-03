@@ -25,7 +25,6 @@ namespace WaveformDisplay
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
 
-        private Label outputFileLabel;
         private Label fileNameLabel; // Label to show the file name
         private Label filePathLabel2; // Label to show the full path of the file selected by openButton2
         private Label outputFilePathLabel; // Label to show the full path of the output file selected by openButton3
@@ -62,8 +61,7 @@ namespace WaveformDisplay
             this.runButton = new Button(); // Initialize Run button
             this.pictureBox1 = new PictureBox();
             this.pictureBox2 = new PictureBox();
-            this.pictureBox3 = new PictureBox();
-            this.outputFileLabel = new Label();
+            this.pictureBox3 = new PictureBox();            
             this.fileNameLabel = new Label();  // Initialize the label for file name
             this.filePathLabel2 = new Label(); // Initialize the label for file path
             this.outputFilePathLabel = new Label(); // Initialize the label for output file path
@@ -95,7 +93,7 @@ namespace WaveformDisplay
             this.Controls.Add(this.playButton3);
 
             this.degreeLabel = new Label();
-            this.degreeLabel.Location = new Point(138, 24);  // Set location below other controls
+            this.degreeLabel.Location = new Point(138, 21);  // Set location below other controls
             this.degreeLabel.Size = new Size(100, 21);
             this.degreeLabel.Font = new Font("Arial", 9, FontStyle.Regular);
             this.degreeLabel.Text = "Percentage";
@@ -103,7 +101,7 @@ namespace WaveformDisplay
 
             // Initialize the Degree TextBox
             this.degreeTextBox = new TextBox();
-            this.degreeTextBox.Location = new Point(140, 49);  // Position next to the Degree label
+            this.degreeTextBox.Location = new Point(140, 45);  // Position next to the Degree label
             this.degreeTextBox.Size = new Size(100, 23);
             this.degreeTextBox.Text = "0";  // Default value
             this.Controls.Add(this.degreeTextBox);
@@ -122,7 +120,7 @@ namespace WaveformDisplay
             this.Text = "WAV Mixer";
 
             Label mixLabel = new Label();
-            mixLabel.Location = new Point(138, 90);
+            mixLabel.Location = new Point(138, 77);
             mixLabel.Size = new Size(35, 18);
             mixLabel.Font = new Font("Arial", 9, FontStyle.Regular);
             mixLabel.Text = "Mix";
@@ -134,13 +132,13 @@ namespace WaveformDisplay
             mixLabel2.Text = "WAV Files";
 
             Label mixLabel3 = new Label();
-            mixLabel3.Location = new Point(13, 145);
+            mixLabel3.Location = new Point(13, 135);
             mixLabel3.Size = new Size(126, 18);
             mixLabel3.Font = new Font("Arial", 9, FontStyle.Regular);
             mixLabel3.Text = "Process";
 
             // processingComboBox (ComboBox for processing options)
-            this.processingComboBox.Location = new Point(140, 115);
+            this.processingComboBox.Location = new Point(140, 102);
             this.processingComboBox.Name = "processingComboBox";
             this.processingComboBox.Size = new Size(100, 23);
             this.processingComboBox.Items.AddRange(new string[] { "Exponential", "Logarithmic", "Sigmoid", "Average", "Additive", "Subtractive" });
@@ -157,21 +155,14 @@ namespace WaveformDisplay
             this.Controls.Add(mixLabel2);
 
             // openButton2
-            this.openButton2.Location = new Point(12, 75);
+            this.openButton2.Location = new Point(12, 77);
             this.openButton2.Name = "openButton2";
             this.openButton2.Size = new Size(75, 23);
             this.openButton2.Text = "Original";
             this.openButton2.Click += new EventHandler(this.OpenButton2_Click);
 
-            // openButton3 (For setting the output file path)
-            this.openButton3.Location = new Point(12, 105);
-            this.openButton3.Name = "openButton3";
-            this.openButton3.Size = new Size(75, 23);
-            this.openButton3.Text = "Output";
-            this.openButton3.Click += new EventHandler(this.OpenButton3_Click);
-
             // runButton (The new Run button)
-            this.runButton.Location = new Point(12, 168);
+            this.runButton.Location = new Point(12, 155);
             this.runButton.Name = "runButton";
             this.runButton.Size = new Size(75, 23);
             this.runButton.Text = "Create";
@@ -210,13 +201,11 @@ namespace WaveformDisplay
 
             // Add controls to the form
             this.Controls.Add(this.openButton1);
-            this.Controls.Add(this.openButton2);
-            this.Controls.Add(this.openButton3);
+            this.Controls.Add(this.openButton2);            
             this.Controls.Add(this.runButton); // Add the Run button
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.outputFileLabel);
+            this.Controls.Add(this.pictureBox3);            
             this.Controls.Add(this.fileNameLabel); // Add fileNameLabel to the form
             this.Controls.Add(this.filePathLabel2); // Add filePathLabel2 to the form
             this.Controls.Add(this.outputFilePathLabel); // Add outputFilePathLabel to the form
@@ -320,7 +309,7 @@ namespace WaveformDisplay
             }
         }
 
-        private void OpenButton3_Click(object sender, EventArgs e)
+        private void RunButton_Click(object sender, EventArgs e)
         {
             saveFileDialog.Filter = "WAV Files|*.wav";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -329,10 +318,7 @@ namespace WaveformDisplay
                 string fileName = System.IO.Path.GetFileName(outputFilePath);  // Get the file name
                 outputFilePathLabel.Text = "Output File: " + fileName;  // Update the label with the output file path
             }
-        }
 
-        private void RunButton_Click(object sender, EventArgs e)
-        {
             // Retrieve the selected processing method
             string selectedOption = processingComboBox.SelectedItem.ToString();
 
